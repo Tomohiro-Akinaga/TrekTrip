@@ -1,7 +1,7 @@
 ---
 name: "component"
-root: "."
-output: "."
+root: "./src/components"
+output: "*"
 questions:
   name: "Please enter a component name."
   story:
