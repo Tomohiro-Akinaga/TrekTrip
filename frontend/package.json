@@ -31,6 +31,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.8",
     "eslint-plugin-storybook": "^0.8.0",
+    "scaffdog": "^4.0.0",
     "storybook": "^8.2.9",
     "typescript": "^5"
   }
