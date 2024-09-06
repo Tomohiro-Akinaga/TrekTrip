@@ -32,10 +32,16 @@ export const Overview = { args: {} };
 # `{{ !inputs.test && '!' }}{{ inputs.name | pascal }}/index.test.tsx`
 
 ```typescript
-import { {{ inputs.name | pascal }} } from './{{ inputs.name | pascal }}';
+import { describe, expect, test } from "vitest";
+import { Button } from "./index";
+import { render, screen } from "@testing-library/react";
 
-export default { component: {{ inputs.name | pascal }} };
-export const Overview = { args: {} };
+describe("Button", () => {
+  test("initial render", () => {
+    render(<Button />);
+    expect(screen.getByText("Button")).toBeInTheDocument();
+  });
+});
 ```
 
 # `{{ inputs.name | pascal }}/index.module.css`
