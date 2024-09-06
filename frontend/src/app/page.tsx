@@ -5,6 +5,8 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <a href="/api/auth/login">Login</a>
+        <a href="/api/auth/logout">Logout</a>
         <Image
           className={styles.logo}
           src="https://nextjs.org/icons/next.svg"
