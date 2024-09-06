@@ -2,33 +2,21 @@ import puppeteer from "puppeteer";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  // Or import puppeteer from 'puppeteer-core';
-
-  // Launch the browser and open a new blank page
-  const browser = await puppeteer.launch({ headless: false });
+  /* ブラウザ起動 */
+  const browser = await puppeteer.launch({ headless: false, slowMo: 50 });
   const page = await browser.newPage();
 
-  // Navigate the page to a URL.
-  await page.goto("https://developer.chrome.com/");
+  /* Yahoo乗り換え案内へ移動 */
+  await page.goto("https://transit.yahoo.co.jp/");
 
-  // Set screen size.
-  await page.setViewport({ width: 1080, height: 1024 });
+  /* 出発駅入力 */
+  await page.locator('#query_input[name="from"]').fill("出発駅");
 
-  // Type into search box.
-  await page.locator(".devsite-search-field").fill("automate beyond recorder");
+  /* 到着駅入力 */
+  await page.locator('#query_input[name="to"]').fill("到着駅");
 
-  // Wait and click on first result.
-  await page.locator(".devsite-result-item-link").click();
-
-  // Locate the full title with a unique string.
-  const textSelector = await page
-    .locator("text/Customize and automate")
-    .waitHandle();
-  const fullTitle = await textSelector?.evaluate((el) => el.textContent);
-
-  // Print the full title.
-  console.log('The title of this blog post is "%s".', fullTitle);
-
+  /* ブラウザ終了 */
   await browser.close();
+
   return NextResponse.json({ message: "Scraped" }, { status: 201 });
 }
