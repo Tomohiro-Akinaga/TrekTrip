@@ -12,34 +12,68 @@ questions:
 
 # `{{ inputs.name | pascal }}/index.tsx`
 
-```typescript
-export type Props = React.PropsWithChildren<{}>;
+```tsx
+import React, { PropsWithChildren } from "react";
 
-export const {{ inputs.name | pascal }}: React.FC<Props> = ({ children }) => {
+interface Props {}
+
+const {{ inputs.name | pascal }} = ({ children }: PropsWithChildren<Props>) => {
   return <div>{children}</div>;
 };
+
+export default {{ inputs.name | pascal }};
 ```
 
 # `{{ inputs.name | pascal }}/index.stories.tsx`
 
-```typescript
-import { {{ inputs.name | pascal }} } from './{{ inputs.name | pascal }}';
+```tsx
+import type { Meta, StoryObj } from "@storybook/react";
+import {{ inputs.name | pascal }} from "./index";
 
-export default { component: {{ inputs.name | pascal }} };
-export const Overview = { args: {} };
+const meta = {
+  title: "{{ inputs.name | pascal }}",
+  component: {{ inputs.name | pascal }},
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  argTypes: {},
+  args: {},
+} satisfies Meta<typeof {{ inputs.name | pascal }}>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+/** Primary */
+export const Primary: Story = {
+  args: {
+    children: "{{ inputs.name | pascal }}",
+  },
+};
+
+/** Secondary */
+export const Secondary: Story = {
+  args: {
+    children: "{{ inputs.name | pascal }}",
+  },
+};
 ```
 
 # `{{ !inputs.test && '!' }}{{ inputs.name | pascal }}/index.test.tsx`
 
-```typescript
+```tsx
+import React from "react";
+import {{ inputs.name | pascal }} from "./index";
 import { describe, expect, test } from "vitest";
-import { Button } from "./index";
 import { render, screen } from "@testing-library/react";
 
-describe("Button", () => {
+describe({{ inputs.name | pascal }}, () => {
   test("initial render", () => {
-    render(<Button />);
-    expect(screen.getByText("Button")).toBeInTheDocument();
+    const children = "{{ inputs.name | pascal }}";
+
+    render(<{{ inputs.name | pascal }}>{children}</{{ inputs.name | pascal }}>);
+
+    expect(screen.getByText("{{ inputs.name | pascal }}")).toBeInTheDocument();
   });
 });
 ```
