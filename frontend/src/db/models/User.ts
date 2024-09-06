@@ -1,6 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 
-const userSchema = new Schema({ name: String }, { timestamps: true });
+const userSchema = new Schema(
+  { name: String, email: String, sub: String },
+  { timestamps: true }
+);
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 
