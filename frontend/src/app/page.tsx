@@ -1,10 +1,12 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Button from "../components/atoms/button/TextButton/index";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <Button>乗り換え案内</Button>
         <a href="/api/auth/login">Login</a>
         <a href="/api/auth/logout">Logout</a>
         <Image
