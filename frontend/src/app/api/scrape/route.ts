@@ -18,20 +18,22 @@ export async function POST(request: NextRequest) {
     await page.locator('#query_input[name="from"]').fill(departure);
     await page.locator('#query_input[name="to"]').fill(arrival);
 
+    /* 到着が早い順に条件変更 */
+    await page.select("#s[name='s']", "0");
+
     /* 交通手段（新幹線、バスなど）の選択をリセット（チェックされている項目をすべて外す） */
     const transitCheckboxes = await page.$$('input[type="checkbox"]');
     for (const checkbox of transitCheckboxes) {
-      const isChecked = await checkbox.evaluate((element) => element.checked);
+      const isChecked = await checkbox.evaluate((el) => el.checked);
       if (isChecked) await checkbox.click();
     }
 
     /* 検索ボタンをクリック */
     await page.locator("#searchModuleSubmit").click();
     await page.waitForNavigation();
-    await page.waitForSelector("#route01");
 
-    /* ページのHTMLを取得*/
-    const html = await page.content();
+    /* 検索結果のルート1のHTMLを取得 */
+    const html = await page.$eval("#route01", (el) => el.outerHTML);
 
     return NextResponse.json({ html }, { status: 201 });
   } catch (error) {
