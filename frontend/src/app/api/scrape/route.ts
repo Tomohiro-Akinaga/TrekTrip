@@ -2,8 +2,9 @@ import puppeteer from "puppeteer";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  /* リクエストボディから出発駅と到着駅を取得 */
-  const { departure, arrival } = await request.json();
+  /* リクエストボディから出発駅,到着駅,時刻を取得 */
+  const { departure, arrival, year, month, day, hour, minutes } =
+    await request.json();
 
   /* Puppeteerでブラウザを起動する */
   const browser = await puppeteer.launch({ headless: true });
@@ -17,6 +18,13 @@ export async function POST(request: NextRequest) {
     /* 出発駅と到着駅の入力フィールドにリクエスト値を入力 */
     await page.locator('#query_input[name="from"]').fill(departure);
     await page.locator('#query_input[name="to"]').fill(arrival);
+
+    /* 出発時刻を入力 */
+    await page.select("#y[name='y']", year);
+    await page.select("#m[name='m']", month);
+    await page.select("#d[name='d']", day);
+    await page.select("#hh[name='hh']", hour);
+    await page.select("#mm[name='mm']", minutes);
 
     /* 到着が早い順に条件変更 */
     await page.select("#s[name='s']", "0");

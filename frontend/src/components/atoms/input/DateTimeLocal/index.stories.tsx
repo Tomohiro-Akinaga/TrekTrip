@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import TextButton from "./index";
+import DateTimeLocal from "./index";
 
 const meta = {
-  title: "TextButton",
-  component: TextButton,
+  title: "DateTimeLocal",
+  component: DateTimeLocal,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {},
   args: {},
-} satisfies Meta<typeof TextButton>;
+} satisfies Meta<typeof DateTimeLocal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -18,13 +18,13 @@ type Story = StoryObj<typeof meta>;
 /** Primary */
 export const Primary: Story = {
   args: {
-    children: "TextButton",
+    children: "DateTimeLocal",
   },
 };
 
 /** Secondary */
 export const Secondary: Story = {
   args: {
-    children: "TextButton",
+    children: "DateTimeLocal",
   },
 };
