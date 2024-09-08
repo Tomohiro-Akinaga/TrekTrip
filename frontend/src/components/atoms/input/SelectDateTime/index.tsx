@@ -3,18 +3,9 @@
 import React, { ComponentPropsWithRef, PropsWithChildren } from "react";
 import getJST from "@/utils/getJST";
 
-interface Props extends ComponentPropsWithRef<"input"> {
-  setDateTime: (value: string) => void;
-}
+interface Props extends ComponentPropsWithRef<"input"> {}
 
-const SelectDateTime = ({
-  children,
-  setDateTime,
-}: PropsWithChildren<Props>) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDateTime(e.target.value);
-  };
-
+const SelectDateTime = ({ children, onChange }: PropsWithChildren<Props>) => {
   const defaultValue = getJST();
 
   return (
@@ -22,7 +13,7 @@ const SelectDateTime = ({
       {children}
       <input
         type="datetime-local"
-        onChange={handleChange}
+        onChange={onChange}
         defaultValue={defaultValue}
       />
     </label>
