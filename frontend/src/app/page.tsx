@@ -8,6 +8,18 @@ import parseISODate from "@/utils/parseISODate";
 import getJST from "@/utils/getJST";
 import TypeText from "@/components/atoms/input/TypeText";
 
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import StepContent from "@mui/material/StepContent";
+import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+
+import { makeStyles } from "@mui/styles";
+import { StepIcon } from "@mui/material";
+
 export default function Home() {
   const initialDateTime = getJST();
   const [departure, setDeparture] = useState<string>("");
@@ -46,6 +58,40 @@ export default function Home() {
     console.log(text);
   };
 
+  const steps = [
+    {
+      label: "Select campaign settings",
+      description: `For each ad campaign that you create, you can control how much
+                you're willing to spend on clicks and conversions, which networks
+                and geographical locations you want your ads to show on, and more.`,
+    },
+    {
+      label: "Create an ad group",
+      description:
+        "An ad group contains one or more ads which target a shared set of keywords.",
+    },
+    {
+      label: "Create an ad",
+      description: `Try out different ad text to see what brings in the most customers,
+                and learn how to enhance your ads using features like ad extensions.
+                If you run into any problems with your ads, find out how to tell if
+                they're running and how to resolve approval issues.`,
+    },
+  ];
+
+  const CustomStepIcon = () => {
+    return (
+      <div
+        style={{
+          width: "24px",
+          height: "24px",
+          backgroundColor: "red",
+          borderRadius: "50%",
+        }}
+      ></div>
+    ); // 空のアイコンに変更
+  };
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -53,6 +99,21 @@ export default function Home() {
         <TypeText onChange={handleChangeArrival}>到着駅: </TypeText>
         <SelectDateTime onChange={handleChangeDateTime}>日時: </SelectDateTime>
         <button onClick={handleClick}>乗り換え案内情報を取得</button>
+
+        <Box sx={{ maxWidth: 400 }}>
+          <Stepper activeStep={4} orientation="vertical">
+            {steps.map((step, index) => (
+              <Step key={step.label}>
+                <StepLabel StepIconComponent={CustomStepIcon}>
+                  {step.label}
+                </StepLabel>
+                <StepContent>
+                  <Typography>{step.description}</Typography>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+        </Box>
       </main>
     </div>
   );
