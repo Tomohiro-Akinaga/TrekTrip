@@ -15,10 +15,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const steps = [
+  { label: "label", description: "desc" },
+  { label: "label", description: "desc" },
+];
+
 /** Primary */
 export const Primary: Story = {
   args: {
     children: "Stepper",
+    steps: steps,
   },
 };
 
@@ -26,5 +32,6 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     children: "Stepper",
+    steps: steps,
   },
 };
