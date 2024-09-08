@@ -1,7 +1,3 @@
-/**
- * ISO 8601 日付文字列を Date オブジェクトに変換する
- * @param {string} isoDate - ISO 8601 日付文字列
- */
 export default function parseISODate(isoDate: string) {
   const date = new Date(isoDate);
 

@@ -1,15 +1,16 @@
 "use client";
 
+import React, { useState } from "react";
 import styles from "./page.module.css";
-import DateTimeLocal from "../components/atoms/input/DateTimeLocal/index";
+import DateTimeLocal from "../components/atoms/DateTimeLocal";
 import parseHTML from "@/utils/parseHTML";
 import parseISODate from "@/utils/parseISODate";
 
 export default function Home() {
-  const isoDate = "2024-09-07T08:22";
+  const [dataTime, setDataTime] = useState<string>("");
 
   const handleClick = async () => {
-    const { year, month, day, hour, minutes } = parseISODate(isoDate);
+    const { year, month, day, hour, minutes } = parseISODate(dataTime);
 
     const html = await fetch("/api/scrape", {
       method: "POST",
@@ -29,10 +30,11 @@ export default function Home() {
     const text = parseHTML(json.html);
     console.log(text);
   };
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <DateTimeLocal type="datetime-local" setDateTimeLocal={() => {}} />
+        <DateTimeLocal type="datetime-local" setDateTime={setDataTime} />
         <button onClick={handleClick}>乗り換え案内情報を取得</button>
         <a href="/api/auth/login">Login</a>
         <a href="/api/auth/logout">Logout</a>
