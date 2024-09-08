@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./page.module.css";
-import DateTimeLocal from "../components/atoms/input/DateTimeLocal";
+import SelectDateTime from "../components/atoms/input/SelectDateTime";
 import parseHTML from "@/utils/parseHTML";
 import parseISODate from "@/utils/parseISODate";
 import getJST from "@/utils/getJST";
@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <DateTimeLocal type="datetime-local" setDateTime={setDataTime} />
+        <SelectDateTime type="datetime-local" setDateTime={setDataTime} />
         <button onClick={handleClick}>乗り換え案内情報を取得</button>
         <a href="/api/auth/login">Login</a>
         <a href="/api/auth/logout">Logout</a>

@@ -7,7 +7,10 @@ interface Props extends ComponentPropsWithRef<"input"> {
   setDateTime: (value: string) => void;
 }
 
-const DateTimeLocal = ({ children, setDateTime }: PropsWithChildren<Props>) => {
+const SelectDateTime = ({
+  children,
+  setDateTime,
+}: PropsWithChildren<Props>) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDateTime(e.target.value);
   };
@@ -26,4 +29,4 @@ const DateTimeLocal = ({ children, setDateTime }: PropsWithChildren<Props>) => {
   );
 };
 
-export default DateTimeLocal;
+export default SelectDateTime;
