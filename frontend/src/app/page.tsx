@@ -2,12 +2,14 @@
 
 import React, { useState } from "react";
 import styles from "./page.module.css";
-import DateTimeLocal from "../components/atoms/DateTimeLocal";
+import DateTimeLocal from "../components/atoms/input/DateTimeLocal";
 import parseHTML from "@/utils/parseHTML";
 import parseISODate from "@/utils/parseISODate";
+import getJST from "@/utils/getJST";
 
 export default function Home() {
-  const [dataTime, setDataTime] = useState<string>("");
+  const initialDateTime = getJST();
+  const [dataTime, setDataTime] = useState<string>(initialDateTime);
 
   const handleClick = async () => {
     const { year, month, day, hour, minutes } = parseISODate(dataTime);
