@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import {
   Box,
   Step,
+  StepConnector,
   StepContent,
   StepLabel,
   Stepper,
@@ -14,12 +15,17 @@ interface Props {
 }
 
 const StepperBox = ({ children, steps }: PropsWithChildren<Props>) => {
+  const StepIconComponent = () => {
+    return <span className={styles.stepIcon}></span>;
+  };
   return (
     <Box sx={{ maxWidth: 400 }}>
-      <Stepper activeStep={0} orientation="vertical">
+      <Stepper orientation="vertical" connector={null}>
         {steps.map((step, index) => (
           <Step key={step.label} active>
-            <StepLabel>{step.label}</StepLabel>
+            <StepLabel StepIconComponent={StepIconComponent}>
+              {step.label}
+            </StepLabel>
             <StepContent>
               <Typography>{step.description}</Typography>
             </StepContent>

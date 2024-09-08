@@ -49,16 +49,20 @@ export default function Home() {
 
   const steps = [
     {
-      label: "Select campaign settings",
+      label: "東京",
       description: "Desc",
     },
     {
-      label: "Create an ad group",
+      label: "熱海p",
       description: "Desc",
     },
     {
-      label: "Create an ad",
+      label: "静岡",
       description: "Desc",
+    },
+    {
+      label: "愛知",
+      description: "",
     },
   ];
 
