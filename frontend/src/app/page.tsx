@@ -14,6 +14,7 @@ export default function Home() {
   const [departure, setDeparture] = useState<string>("");
   const [arrival, setArrival] = useState<string>("");
   const [dataTime, setDataTime] = useState<string>(initialDateTime);
+  const [steps, setSteps] = useState<any>([]);
 
   const handleChangeDeparture = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDeparture(e.target.value);
@@ -44,27 +45,9 @@ export default function Home() {
 
     const json = await html.json();
     const text = parseHTML(json.html);
-    console.log(text);
+    console.log(text.transit);
+    setSteps(text.transit);
   };
-
-  const steps = [
-    {
-      label: "東京",
-      description: "Desc",
-    },
-    {
-      label: "熱海p",
-      description: "Desc",
-    },
-    {
-      label: "静岡",
-      description: "Desc",
-    },
-    {
-      label: "愛知",
-      description: "",
-    },
-  ];
 
   return (
     <div className={styles.page}>

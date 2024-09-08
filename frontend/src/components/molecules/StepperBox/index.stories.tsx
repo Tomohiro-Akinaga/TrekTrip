@@ -16,8 +16,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const steps = [
-  { label: "label", description: "desc" },
-  { label: "label", description: "desc" },
+  {
+    summary: "summary",
+    station: "東京",
+    time: "14:10",
+    transport: { line: "西武新宿線", destination: "所沢行き" },
+  },
+  {
+    summary: "summary",
+    station: "東京",
+    time: "14:10着16:10出",
+    transport: { line: "", destination: "" },
+  },
 ];
 
 /** Primary */

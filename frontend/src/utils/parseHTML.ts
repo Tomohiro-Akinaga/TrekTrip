@@ -9,8 +9,8 @@ export default function parseHTML(html: string) {
 
   // 出発時間や到着時間を取得し、そのテキストを配列に格納
   const time: string[] = [];
-  document.querySelectorAll(".time").forEach((el) => {
-    time.push(el.textContent || "");
+  document.querySelectorAll(".time").forEach((el, index) => {
+    if (index > 0) time.push(el.textContent || "");
   });
 
   // 駅名を取得し、そのテキストを配列に格納
@@ -20,12 +20,11 @@ export default function parseHTML(html: string) {
     .forEach((el) => station.push(el.textContent || ""));
 
   // 鉄道や方面を取得し、そのテキストを配列に格納
-  const transport: object[] = [];
+  const lines: string[] = [];
+  const destinations: string[] = [];
   document.querySelectorAll(".transport").forEach((el) => {
-    transport.push({
-      line: el.querySelector("div")?.textContent,
-      destination: el.querySelector(".destination")?.textContent,
-    });
+    lines.push(el.querySelector("div")?.textContent || "");
+    destinations.push(el.querySelector(".destination")?.textContent || "");
   });
 
   // 距離や運賃などの概要を取得し、それぞれのテキストを配列に格納
@@ -33,5 +32,13 @@ export default function parseHTML(html: string) {
     document.querySelector(".summary")?.children || []
   ).map((el) => el.textContent || "");
 
-  return { station, time, transport, summary };
+  // 配列を結合し、オブジェクトの乗り換え情報に変換
+  const transit = station.map((v, i) => ({
+    station: v,
+    time: time[i],
+    line: lines[i],
+    destination: destinations[i],
+  }));
+
+  return { transit: transit, summary: summary };
 }

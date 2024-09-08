@@ -3,7 +3,6 @@ import styles from "./index.module.css";
 import {
   Box,
   Step,
-  StepConnector,
   StepContent,
   StepLabel,
   Stepper,
@@ -11,24 +10,35 @@ import {
 } from "@mui/material";
 
 interface Props {
-  steps: { label: string; description: string }[];
+  steps: any;
 }
 
 const StepperBox = ({ children, steps }: PropsWithChildren<Props>) => {
-  const StepIconComponent = () => {
-    return <span className={styles.stepIcon}></span>;
+  const StepIconComponent = (i: any) => {
+    const isFirstStep = i === 0;
+    const isLastStep = i === steps.length - 1;
+    return (
+      <span className={styles.stepIcon}>
+        {isFirstStep ? "発" : isLastStep ? "着" : ""}
+      </span>
+    );
   };
+
   return (
     <Box sx={{ maxWidth: 400 }}>
       <Stepper orientation="vertical" connector={null}>
-        {steps.map((step, index) => (
-          <Step key={step.label} active>
-            <StepLabel StepIconComponent={StepIconComponent}>
-              {step.label}
+        {/* vとiの型定義を直す */}
+        {steps.map((v: any, i: number) => (
+          <Step key={i} active>
+            <StepLabel
+              StepIconComponent={() => StepIconComponent(i)}
+              style={{ display: "flex", gap: "10px" }}
+            >
+              <Typography>{v.station}</Typography>
+              <Typography>{v.time}</Typography>
             </StepLabel>
-            <StepContent>
-              <Typography>{step.description}</Typography>
-            </StepContent>
+            <StepContent>{v.line}</StepContent>
+            <StepContent>{v.destination}</StepContent>
           </Step>
         ))}
       </Stepper>
