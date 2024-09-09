@@ -9,6 +9,7 @@ import getJST from "@/utils/getJST";
 import TypeText from "@/components/atoms/input/TypeText";
 import Icon from "@/components/atoms/Icon";
 import StepperBox from "@/components/molecules/box/StepperBox";
+import Header from "@/components/organisms/Header";
 
 type TransiteType = {
   station: string;
@@ -66,6 +67,7 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
+      <Header />
       <main className={styles.main}>
         <TypeText onChange={handleChangeDeparture}>出発駅: </TypeText>
         <TypeText onChange={handleChangeArrival}>到着駅: </TypeText>
