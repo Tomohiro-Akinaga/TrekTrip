@@ -10,6 +10,7 @@ import TypeText from "@/components/atoms/input/TypeText";
 import Icon from "@/components/atoms/Icon";
 import StepperBox from "@/components/molecules/box/StepperBox";
 import Header from "@/components/organisms/Header";
+import HomePage from "@/components/pages";
 
 type TransiteType = {
   station: string;
@@ -67,13 +68,8 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      <Header />
       <main className={styles.main}>
-        <TypeText onChange={handleChangeDeparture}>出発駅: </TypeText>
-        <TypeText onChange={handleChangeArrival}>到着駅: </TypeText>
-        <SelectDateTime onChange={handleChangeDateTime}>日時: </SelectDateTime>
-        <button onClick={handleClick}>乗り換え案内情報を取得</button>
-        <TransiteBox />
+        <HomePage />
       </main>
     </div>
   );
