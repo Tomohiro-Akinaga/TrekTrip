@@ -10,29 +10,34 @@ import {
 } from "@mui/material";
 
 interface Props {
-  steps: any;
+  steps: {
+    station: string;
+    time: string;
+    line: string;
+    destination: string;
+  }[];
 }
 
-const StepperBox = ({ children, steps }: PropsWithChildren<Props>) => {
-  const StepIconComponent = (i: any) => {
-    const isFirstStep = i === 0;
-    const isLastStep = i === steps.length - 1;
+const StepperBox = ({ steps }: PropsWithChildren<Props>) => {
+  const StepIconComponent = (i: number) => {
+    const step =
+      i === 0 ? "firstStep" : i === steps.length - 1 ? "lastStep" : "";
+
     return (
-      <span className={styles.stepIcon}>
-        {isFirstStep ? "発" : isLastStep ? "着" : ""}
-      </span>
+      <span
+        className={[styles.stepIcon, styles[`is-${step}`]].join(" ")}
+      ></span>
     );
   };
 
   return (
     <Box sx={{ maxWidth: 400 }}>
       <Stepper orientation="vertical" connector={null}>
-        {/* vとiの型定義を直す */}
-        {steps.map((v: any, i: number) => (
+        {steps.map((v, i) => (
           <Step key={i} active>
             <StepLabel
               StepIconComponent={() => StepIconComponent(i)}
-              style={{ display: "flex", gap: "10px" }}
+              className={styles.stepLabel}
             >
               <Typography>{v.station}</Typography>
               <Typography>{v.time}</Typography>

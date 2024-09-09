@@ -1,3 +1,8 @@
+.stepLabel {
+  display: "flex";
+  gap: "10px";
+}
+
 .stepIcon {
   width: 24px;
   height: 24px;
@@ -7,4 +12,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.stepIcon.is-firstStep::before {
+  content: "出";
+}
+
+.stepIcon.is-lastStep::before {
+  content: "着";
 }

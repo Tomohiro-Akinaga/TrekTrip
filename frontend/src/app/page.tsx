@@ -45,7 +45,6 @@ export default function Home() {
 
     const json = await html.json();
     const text = parseHTML(json.html);
-    console.log(text.transit);
     setSteps(text.transit);
   };
 
