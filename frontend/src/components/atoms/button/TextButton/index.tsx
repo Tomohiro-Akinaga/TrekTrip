@@ -1,12 +1,12 @@
 import React, { ComponentPropsWithoutRef, PropsWithChildren } from "react";
-import Stack from "@mui/material/Stack";
+import style from "./index.module.css";
 import Button from "@mui/material/Button";
 
 interface Props extends ComponentPropsWithoutRef<"button"> {}
 
 const TextButton = ({ children, onClick }: PropsWithChildren<Props>) => {
   return (
-    <Button variant="contained" onClick={onClick}>
+    <Button variant="contained" onClick={onClick} className={style.button}>
       {children}
     </Button>
   );

@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useState } from "react";
 import TypeText from "@/components/atoms/input/TypeText";
 import styles from "./index.module.css";
-import SelectDateTime from "@/components/atoms/input/SelectDateTime";
+import SelectDateTime from "@/components/molecules/SelectDateTime";
 import TextButton from "@/components/atoms/button/TextButton";
 import getJST from "@/utils/getJST";
 import Icon from "@/components/atoms/Icon";
@@ -32,8 +32,8 @@ const SearchForm = ({ children }: PropsWithChildren<Props>) => {
   const handleChangeArrival = (e: React.ChangeEvent<HTMLInputElement>) => {
     setArrival(e.target.value);
   };
-  const handleChangeDateTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDataTime(e.target.value);
+  const handleChangeDateTime = (e: any) => {
+    console.log(e);
   };
 
   const handleClick = async () => {
