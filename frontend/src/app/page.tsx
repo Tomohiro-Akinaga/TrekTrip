@@ -12,60 +12,7 @@ import StepperBox from "@/components/molecules/box/StepperBox";
 import Header from "@/components/organisms/Header";
 import HomePage from "@/components/pages";
 
-type TransiteType = {
-  station: string;
-  time: string;
-  line: string;
-  destination: string;
-};
-
 export default function Home() {
-  const initialDateTime = getJST();
-  const [departure, setDeparture] = useState<string>("");
-  const [arrival, setArrival] = useState<string>("");
-  const [dataTime, setDataTime] = useState<string>(initialDateTime);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [steps, setSteps] = useState<TransiteType[]>([]);
-
-  const handleChangeDeparture = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDeparture(e.target.value);
-  };
-  const handleChangeArrival = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setArrival(e.target.value);
-  };
-  const handleChangeDateTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDataTime(e.target.value);
-  };
-
-  const handleClick = async () => {
-    setIsLoading(true);
-    const { year, month, day, hour, minutes } = parseISODate(dataTime);
-
-    const html = await fetch("/api/scrape", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        departure: departure,
-        arrival: arrival,
-        year: year,
-        month: month,
-        day: day,
-        hour: hour,
-        minutes: minutes,
-      }),
-    });
-
-    const json = await html.json();
-    const text = parseHTML(json.html);
-    setSteps(text.transit);
-    setIsLoading(false);
-  };
-
-  const TransiteBox = () => {
-    if (isLoading) return <Icon />;
-    return <StepperBox steps={steps} />;
-  };
-
   return (
     <div className={styles.page}>
       <main className={styles.main}>

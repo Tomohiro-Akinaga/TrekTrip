@@ -1,13 +1,18 @@
 import React, { PropsWithChildren } from "react";
 import TextButton from "@/components/atoms/button/TextButton";
 import SearchForm from "@/components/organisms/SearchForm";
+import styles from "./index.module.css";
 
-interface Props {}
+interface Props {
+  buttonText: string;
+}
 
-const HomeLayout = ({ children }: PropsWithChildren<Props>) => {
+const HomeLayout = ({ children, buttonText }: PropsWithChildren<Props>) => {
   return (
-    <div>
-      <TextButton></TextButton>
+    <div className={styles.wrapper}>
+      <div className={styles.actionArea}>
+        <TextButton>{buttonText}</TextButton>
+      </div>
       <SearchForm />
     </div>
   );
