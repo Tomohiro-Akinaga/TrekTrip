@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     await request.json();
 
   /* Puppeteerでブラウザを起動する */
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   page.setDefaultNavigationTimeout(3000);
 
