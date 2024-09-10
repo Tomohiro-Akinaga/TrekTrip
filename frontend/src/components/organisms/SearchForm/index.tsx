@@ -3,7 +3,7 @@ import TypeText from "@/components/atoms/input/TypeText";
 import styles from "./index.module.css";
 import SelectDateTime from "@/components/molecules/SelectDateTime";
 import TextButton from "@/components/atoms/button/TextButton";
-import getJST from "@/utils/getJST";
+import TextField from "@mui/material/TextField";
 import Icon from "@/components/atoms/Icon";
 import StepperBox from "@/components/molecules/box/StepperBox";
 import parseHTML from "@/utils/parseHTML";
@@ -70,8 +70,8 @@ const SearchForm = ({ children }: PropsWithChildren<Props>) => {
 
   return (
     <div className={styles.wrapper}>
-      <TypeText onChange={handleChangeArrival}>出発</TypeText>
-      <TypeText onChange={handleChangeDeparture}>到着</TypeText>
+      <TextField label="出発" onChange={handleChangeArrival} />
+      <TextField label="到着" onChange={handleChangeDeparture} />
       <SelectDateTime onChange={handleChangeDateTime} />
       <TextButton onClick={handleClick}>検索</TextButton>
       <TransiteBox />

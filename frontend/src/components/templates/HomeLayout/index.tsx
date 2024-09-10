@@ -5,13 +5,18 @@ import styles from "./index.module.css";
 
 interface Props {
   buttonText: string;
+  startIcon: React.ReactNode;
 }
 
-const HomeLayout = ({ children, buttonText }: PropsWithChildren<Props>) => {
+const HomeLayout = ({
+  children,
+  buttonText,
+  startIcon,
+}: PropsWithChildren<Props>) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.actionArea}>
-        <TextButton>{buttonText}</TextButton>
+        <TextButton startIcon={startIcon}>{buttonText}</TextButton>
       </div>
       <SearchForm />
     </div>
