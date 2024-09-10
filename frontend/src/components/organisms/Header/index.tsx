@@ -80,7 +80,7 @@ const Header = () => {
           {DrawerList}
         </Drawer>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          青春18きっぷ乗り換え案内
+          青春18ナビ
         </Typography>
         <Button color="inherit">ログイン</Button>
       </Toolbar>
