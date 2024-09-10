@@ -82,7 +82,7 @@ const Header = () => {
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           青春18きっぷ乗り換え案内
         </Typography>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit">ログイン</Button>
       </Toolbar>
     </AppBar>
   );
