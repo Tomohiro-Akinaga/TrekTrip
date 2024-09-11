@@ -1,3 +1,5 @@
+"use client";
+
 import React, { PropsWithChildren, useState } from "react";
 import TypeText from "@/components/atoms/input/TypeText";
 import styles from "./index.module.css";
